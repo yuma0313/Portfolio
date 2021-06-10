@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :caption
       t.string :image_id
       t.string :address
-      t.string :prefecture
+      t.integer :prefecture
 
       t.timestamps
     end

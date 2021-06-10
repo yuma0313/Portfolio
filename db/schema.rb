@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_06_10_073602) do
     t.text "caption"
     t.string "image_id"
     t.string "address"
-    t.string "prefecture"
+    t.integer "prefecture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
