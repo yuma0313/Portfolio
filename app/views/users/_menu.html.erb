@@ -1,0 +1,10 @@
+<table class="table">
+  <tbody>
+    <tr><td><%= link_to "ホーム", root_path %></td></tr>
+    <tr><td><%= link_to "投稿", post_images_path %></td></tr>
+    <tr><td><%= link_to "いいね", favorites_users_path %></td></tr>
+    <tr><td><%= link_to "ブックマーク", bookmarks_users_path %></td></tr>
+    <tr><td><%= link_to "プロフィール", user_path(current_user) %></td></tr>
+    <tr><td><%= link_to "スケジュール", events_path %></td></tr>
+  </tbody>
+</table>

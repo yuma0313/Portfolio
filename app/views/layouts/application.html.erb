@@ -4,27 +4,52 @@
     <title>CafeTown</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to '投稿一覧', post_images_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "CafeTown", root_path %>
+        <nav>
+          <ul class="nav justify-content-end">
+            <li class="nav-item m-3">
+              <a class="nav-link"><%= link_to "About", about_path %></a>
+            </li>
+            <li class="nav-item m-3">
+              <a class="nav-link"><%= link_to "投稿一覧", post_images_path %></a>
+            </li>
+            <%if user_signed_in? %>
+            <li class="nav-item m-3">
+              <a class="nav-link"><%= link_to "マイページ", user_path(current_user) %></a>
+            </li>
+            <li class="nav-item m-3">
+              <a class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a>
+            </li>
+            <% else %>
+            <li class="nav-item m-3">
+              <a class="nav-link"><%= link_to "新規登録", new_user_registration_path %></a>
+            </li>
+            <li class="nav-item m-3">
+              <a class="nav-link"><%= link_to "ログイン", new_user_session_path %></a>
+            </li>
+            <% end %>
+          </ul>
+          <ul class="nav justify-content-center">
+          </ul>
+        </nav>
+        <div class="search">
+          <%= form_with(url: search_post_images_path, local: true, method: :get, class: "search-form") do |form| %>
+            <%= form.text_field :keyword, placeholder: "地名や店名を入力...", class: "search-input" %>
+            <%= form.select :prefecture, PostImage.prefectures.keys.to_a, {} %>
+            <%= form.submit "検索", class: "search-btn" %>
+          <% end %>
+        </div>
+      </div>
+　　</header>
     <%= yield %>
   </body>
 </html>

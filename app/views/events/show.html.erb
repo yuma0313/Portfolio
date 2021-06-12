@@ -1,0 +1,13 @@
+<div class="show">
+  <p>
+    <strong>タイトル</strong>
+    <%= @event.title %>
+  </p>
+  <p>
+    <strong>日時</strong>
+    <%= @event.start_time.strftime("%m-%d") %>
+  </p>
+  <%= link_to '編集する', edit_event_path(@event) %>
+  <%= link_to '削除する',event_path(@event.id), method: :delete %>
+  <%= link_to '戻る', events_path %>
+</div>

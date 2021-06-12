@@ -1,0 +1,17 @@
+<% if @post_images == [] %>
+<h2 class = "seach-result">検索結果はありません</h2>
+<% else %>
+<div class = "post-contents">
+  <ul class = "post-list">
+    <% @post_images.each do |post_image| %>
+    <div>
+      <p>投稿ユーザー画像：<%= link_to attachment_image_tag(post_image, :image), post_image_path(post_image.id) %></p>
+      <p>カフェ名：<%= post_image.name %></p>
+      <p>キャプション：<%= post_image.caption %></p>
+      <p>所在地 : <%= post_image.prefecture %><%= post_image.address %></p>
+      <p>ユーザーネーム：<%= post_image.user.name %></p>
+    </div>
+    <% end %>
+  </ul>
+</div>
+<% end %>

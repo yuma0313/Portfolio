@@ -32,8 +32,7 @@
     <p>キャプション：<%= post_image.caption %></p>
     <p>所在地 : <%= post_image.prefecture %><%= post_image.address %></p>
     <p>ユーザーネーム：<%= post_image.user.name %></p>
+    <%= render 'favorites/favorites', post_image: post_image %>
+    <%= render 'bookmarks/bookmark', post_image: post_image %>
   </div>
 <% end %>
-
-<%# if post_image.favorited_by?(current_user) %>
-  <%#= post

@@ -1,10 +1,13 @@
 class PostImage < ApplicationRecord
   belongs_to :user
   attachment :image
+
   has_many :favorites, dependent: :destroy
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
+  has_many :favorited_users, through: :favorites, source: :user #いいねランキング
+
   has_many :bookmarks, dependent: :destroy
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
@@ -22,4 +25,21 @@ class PostImage < ApplicationRecord
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
     沖縄県:47
   }
+
+  def self.search(params)
+    post_images = PostImage.all
+    if params[:prefecture] && params[:prefecture] != "--未選択--"
+      prefecture = PostImage.prefectures[params[:prefecture]]
+      post_images = post_images.where(['prefecture LIKE(?)', "%#{prefecture}%"])
+    end
+    if params[:keyword].present?
+      keyword = params[:keyword]
+      post_images = post_images.where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%","%#{keyword}%"])
+    end
+    post_images
+  end
+
+  geocoded_by :address #住所のカラム名
+  after_validation :geocode, if: :address_changed? #address変更時に緯度・経度が更新される
+
 end

@@ -1,0 +1,9 @@
+<% if post_image.bookmarked_by?(current_user) %>
+  <p>
+    <%= link_to post_image.bookmarks.count, post_image_bookmarks_path(post_image), method: :delete, class: "fas fa-bookmark" %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to post_image.bookmarks.count, post_image_bookmarks_path(post_image), method: :post, class: "far fa-bookmark" %>
+  </p>
+<% end %>

@@ -77,4 +77,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'rubocop', require:false
 gem 'rubocop-rails', require:false
-
+gem 'simple_calendar', '~> 2.0'
+gem 'geocoder'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
