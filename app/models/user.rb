@@ -19,4 +19,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+  
+  #テストログイン
+  def self.guest
+    find_or_create_by(email: "test@com") do |user|
+      user.password = Rails.application.secrets.test_account_pass
+    end
+  end
 end
