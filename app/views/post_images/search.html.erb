@@ -1,17 +1,29 @@
-<% if @post_images == [] %>
-<h2 class = "seach-result">検索結果はありません</h2>
-<% else %>
-<div class = "post-contents">
-  <ul class = "post-list">
-    <% @post_images.each do |post_image| %>
-    <div>
-      <p>投稿ユーザー画像：<%= link_to attachment_image_tag(post_image, :image), post_image_path(post_image.id) %></p>
-      <p>カフェ名：<%= post_image.name %></p>
-      <p>キャプション：<%= post_image.caption %></p>
-      <p>所在地 : <%= post_image.prefecture %><%= post_image.address %></p>
-      <p>ユーザーネーム：<%= post_image.user.name %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <% if @post_images == [] %>
+      <h2 class = "seach-result">検索結果はありません</h2>
+      <% else %>
+      <h2 class="search-result">検索結果</h2>
+      <% @post_images.each do |post_image| %>
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <%=  link_to attachment_image_tag(post_image, :image, :fill, 200, 150, class: "card-img-top"), post_image_path(post_image) %>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= post_image.name %></h5>
+                  <p class="card-text"><%= post_image.caption %></p>
+                  <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
+                  <p class="card-text"><%= render 'favorites/favorites', post_image: post_image %></p>
+                  <p class="card-text"><%= render 'bookmarks/bookmark', post_image: post_image %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <% end %>
-  </ul>
+  </div>
 </div>
-<% end %>

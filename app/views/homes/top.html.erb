@@ -1,12 +1,66 @@
-<h1>いいねランキング</h1>
-<% @post_images.each do |post_image| %>
-  <div>
-    <p>投稿ユーザー画像：<%= link_to attachment_image_tag(post_image, :image), post_image_path(post_image.id) %></p>
-    <p>カフェ名：<%= post_image.name %></p>
-    <p>キャプション：<%= post_image.caption %></p>
-    <p>所在地 : <%= post_image.prefecture %><%= post_image.address %></p>
-    <p>ユーザーネーム：<%= post_image.user.name %></p>
-    <%= render 'favorites/favorites', post_image: post_image %>
-    <%= render 'bookmarks/bookmark', post_image: post_image %>
+<div class="container-fluid box-background">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="top-box">
+        <h1 class="top-title text-center">ようこそ、CafeTownへ！</h1>
+        <p class=" top-text text-center">
+          このサイトは、カフェの共有・検索サイトになります。</br>
+          会員でない方も投稿の閲覧はできますが、</br>
+          新規投稿には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
+<div class="mx-auto col-md-8 mt-4">
+  <h2>いいねランキング</h2>
+  <div class="container">
+    <div class="row">
+      <% @post_images.each do |post_image| %>
+        <div class="col-md-3">
+          <div>
+          　<p class="card-text">いいね数:<%= post_image.favorites.count %></p>
+            <%= link_to post_image_path(post_image), class: "no-underline", 'data-turbolinks': false do %>
+              <%= attachment_image_tag post_image, :image, :fill, 200, 150, class: "card-img-top " %>
+              <div class="card-body">
+                <h6 class="card-title">
+                  <%= post_image.name %>
+                </h6>
+                <p class="card-text">
+                  <%= post_image.prefecture %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="mx-auto col-md-8 mt-4">
+  <h2>投稿一覧</h2>
+  <div class="container">
+    <div class="row">
+      <% @posts.last(4).each do |post_image| %>
+        <div class="col-md-3">
+          <div>
+            <%= link_to post_image_path(post_image), class: "no-underline", 'data-turbolinks': false do %>
+              <%= attachment_image_tag post_image, :image, :fill, 200, 150, class: "card-img-top " %>
+              <div class="card-body">
+                <h6 class="card-title">
+                  <%= post_image.name %>
+                </h6>
+                <p class="card-text">
+                  <%= post_image.prefecture %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="all_post_images">
+      <%= link_to "全ての投稿を見る >", post_images_path, class: "no-underline" %>
+    </div>
+  </div>
+</div>

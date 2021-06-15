@@ -39,15 +39,15 @@
             <% end %>
           </ul>
           <ul class="nav justify-content-center">
+            <div class="search">
+              <%= form_with(url: search_post_images_path, local: true, method: :get, class: "search-form") do |form| %>
+                <%= form.text_field :keyword, placeholder: "地名や店名を入力...", class: "search-input" %>
+                <%= form.select :prefecture, PostImage.prefectures.keys.to_a, {} %>
+                <%= form.submit "検索", class: "search-btn" %>
+              <% end %>
+            </div>
           </ul>
         </nav>
-        <div class="search">
-          <%= form_with(url: search_post_images_path, local: true, method: :get, class: "search-form") do |form| %>
-            <%= form.text_field :keyword, placeholder: "地名や店名を入力...", class: "search-input" %>
-            <%= form.select :prefecture, PostImage.prefectures.keys.to_a, {} %>
-            <%= form.submit "検索", class: "search-btn" %>
-          <% end %>
-        </div>
       </div>
 　　</header>
     <%= yield %>

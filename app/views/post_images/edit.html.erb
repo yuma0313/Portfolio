@@ -1,26 +1,32 @@
-<h1>投稿編集</h1>
-<%= form_with model: @post_image, local:true do |f| %>
-<div class="field">
-  <label>カフェ名</label>
-  <%= f.text_area :name %>
+<div class="container-fluid box-background">
+  <div class="row justify-content-center">
+    <div class="col-4 align-self-center">
+      <h2 class="text-center">投稿編集</h2>
+      <%= form_with model: @post_image, local:true do |f| %>
+      <div class="field">
+        <label>カフェ名</label><br>
+        <%= f.text_area :name, size: "50" %>
+      </div>
+      <div class="field">
+        <label>キャプション</label><br>
+        <%= f.text_area :caption, size: "50" %>
+      </div>
+      <div class="field">
+        <label>都道府県</label><br>
+        <%= f.select :prefecture, PostImage.prefectures.keys, {} %>
+      </div>
+      <div class="field">
+        <label>所在地</label><br>
+        <%= f.text_area :address, size: "50" %>
+      </div>
+      <div class="field mb-3">
+        <label for="inputImage">投稿画像</label><br>
+        <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
+      </div>
+      <div class="action">
+        <%= f.submit "変更内容を更新", class: "btn btn-success"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<div class="field">
-  <label>キャプション</label>
-  <%= f.text_area :caption %>
-</div>
-<div class="field">
-  <label>都道府県</label>
-  <%= f.select :prefecture, PostImage.prefectures.keys, {} %>
-</div>
-<div class="field">
-  <label>所在地</label>
-  <%= f.text_area :address %>
-</div>
-<div class="field">
-  <label for="inputImage">投稿画像</label><br>
-  <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
-</div>
-<div class="action">
-  <%= f.submit "変更内容を更新", class: "btn btn-success"%>
-</div>
-<% end %>

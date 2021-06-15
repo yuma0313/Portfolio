@@ -1,13 +1,22 @@
-<%= form_with(model: @event, local: true) do |f| %>
-  <div class="title">
-    <div class="form-tag">タイトル</div>
-    <%= f.text_field :title %>
+<div class="container-fluid box-background">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'users/menu' %>
+    </div>
+    <div class="col-md-8">
+      <%= form_with(model: @event, local: true) do |f| %>
+        <div class="title">
+          <div class="form-tag mb-2">タイトル</div>
+          <%= f.text_field :title,size: '50' %>
+        </div>
+        <div class="time">
+          <div class="form-tag mb-2">時間</div>
+          <%= f.datetime_select :start_time %>
+        </div>
+        <div class="submit mt-3">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="time">
-    <div class="form-tag">時間</div>
-    <%= f.datetime_select :start_time %>
-  </div>
-  <div class="submit">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

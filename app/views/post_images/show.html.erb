@@ -1,56 +1,63 @@
-<div class="post-body">
-  <%= attachment_image_tag @post_image, :image %>
-  <p>カフェ名：<%= @post_image.name %></p>
-  <p>説明：<%= @post_image.caption %></p>
-  <p>所在地 : <%= @post_image.prefecture %><%= @post_image.address %></p>
-  <p>ユーザーネーム：<%= @post_image.user.name %></p>
-  <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post_image.user == current_user %>
-    <%= link_to "削除", post_image_path(@post_image), method: :delete %>
-    <%= link_to "編集", edit_post_image_path(@post_image) %>
-  <% end %>
-  <%= render 'favorites/favorites', post_image: @post_image %>
-  <%= render 'bookmarks/bookmark', post_image: @post_image %>
-  <div id="map"></div>
-  <style>
-  #map{
-    height: 150px;
-    width:270px;
-  }
-  </style>
+<div class="container-fluid box-background">
+  <div class="row justify-content-center">
+    <div class="card border-light col-8">
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= @post_image.name %></h5>
+        <div class="text-center"><%= attachment_image_tag @post_image, :image, :fill, 600,450 %></div>
+        <p class="card-text text-center"><%= @post_image.caption %></p>
+        <p class="card-text text-center"><%= @post_image.prefecture %><%= @post_image.address %></p>
+        <p class="card-text text-center">ユーザーネーム：<%= @post_image.user.name %></p>
+        <p class="card-text text-center">投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+        <div class="text-center">
+        <% if @post_image.user == current_user %>
+          <%= link_to "削除", post_image_path(@post_image), method: :delete, class: 'btn btn-danger'%>
+          <%= link_to "編集", edit_post_image_path(@post_image),class: 'btn btn-success' %>
+        <% end %>
+        <%= render 'favorites/favorites', post_image: @post_image %>
+        <%= render 'bookmarks/bookmark', post_image: @post_image %>
+        </div>
+      </div>
+        <div id="map"></div>
+        <style>
+        #map{
+          height: 150px;
+          width:270px;
+        }
+        </style>
 
-  <script type="text/javascript">
+        <script type="text/javascript">
 
-      function initMap() {
+            function initMap() {
 
-          var test = {lat: <%= @post_image.latitude %>, lng: <%= @post_image.longitude %>};
-          // var test = {lat: 34.68315444102379, lng: 135.72651512158697};
-          // test.lat = <%#= @post_image.latitude %>
-          // test.lng = <%#= @post_image.longitude %>
-          var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15,
-              center: test
-          });
-          var transitLayer = new google.maps.TransitLayer();
-          transitLayer.setMap(map);
+                var test = {lat: <%= @post_image.latitude %>, lng: <%= @post_image.longitude %>};
+                // var test = {lat: 34.68315444102379, lng: 135.72651512158697};
+                // test.lat = <%#= @post_image.latitude %>
+                // test.lng = <%#= @post_image.longitude %>
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: test
+                });
+                var transitLayer = new google.maps.TransitLayer();
+                transitLayer.setMap(map);
 
-          var contentString = '住所：<%#= @post_image.prefecture %><%#= @post_image.address %>';
-          var infowindow = new google.maps.InfoWindow({
-              content: contentString
-          });
+                var contentString = '住所：<%#= @post_image.prefecture %><%#= @post_image.address %>';
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
 
-          var marker = new google.maps.Marker({
-              position:test,
-              map: map,
-              title: contentString
-          });
+                var marker = new google.maps.Marker({
+                    position:test,
+                    map: map,
+                    title: contentString
+                });
 
-          marker.addListener('click', function() {
-              infowindow.open(map, marker);
-          });
-      }
-  </script>
-
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-  </script>
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+        </script>
+    </div>
   </div>
+</div>

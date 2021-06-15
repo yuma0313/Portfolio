@@ -1,46 +1,41 @@
-<div class="container px-5 px-sm-0">
-    <div class="row">
-        <div class="col-md-4">
-            <%#= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-            <%= render 'users/menu' %>
-            <%= link_to "退会する", confirm_unsubscribe_path %>
-        </div>
-        <div class="col-md-7 offset-md-1">
-          <table class="table table-hover table-inverse">
-            <tbody>
-              <tr>
-                <td>名前</td>
-                <td><%= @user.name %></td>
-              </tr>
-            </tbody>
-          </table>
-          <% if @user.id == current_user.id %>
-            <div class="row">
-              <%= link_to "",edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
-            </div>
-          <% end %>
-          <h2>Books</h2>
-          <table class="table table-hover table-inverse">
-            <thead>
-              <tr>
-                <th></th>
-                <th>カフェ名</th>
-                <th>キャプション</th>
-                <th></th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody>
-             <% @post_images.each do |post_image| %>
-              <tr>
-                <td></td>
-                <td><%= link_to post_image.name,post_image_path(post_image.id) %></td>
-                <td><%= post_image.caption %></td>
-              </tr>
-              <%= attachment_image_tag post_image, :image %>
-             <% end %>
-            </tbody>
-          </table>
-        </div>
+<div class="container-fluid box-background">
+  <div class="row">
+    <div class="col-md-4">
+      <%#= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+      <%= render 'users/menu' %>
+      <h3 class="mt-4 text-center">ユーザー情報</h3>
+      <table class="table table-hover mt-4">
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <p class="text-center"><%= link_to "プロフィールを編集",edit_user_path(@user),class: 'btn btn-success' %></p>
     </div>
+    <div class="col-md-8">
+      <h2>自分の投稿</h2>
+        <% @post_images.each do |post_image| %>
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <%=  link_to attachment_image_tag(post_image, :image, :fill, 200, 150, class: "card-img-top"), post_image_path(post_image) %>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= post_image.name %></h5>
+                  <p class="card-text"><%= post_image.caption %></p>
+                  <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
+                  <p class="card-text"><%= render 'favorites/favorites', post_image: post_image %></p>
+                  <p class="card-text"><%= render 'bookmarks/bookmark', post_image: post_image %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
 </div>

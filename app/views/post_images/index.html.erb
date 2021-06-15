@@ -1,38 +1,53 @@
-<h1>画像投稿フォーム</h1>
-<%= form_with model: @post_image, method: :post, local:true do |f| %>
-  <div class="field">
-    <label>画像</label>
-    <%= f.attachment_field :image %>
+<div class="container-fluid box-background">
+  <div class="row">
+    <div class="col-md-4 text-left mb-3">
+      <h2>新規投稿フォーム</h2>
+      <%= form_with model: @post_image, method: :post, local:true do |f| %>
+        <div class="field mb-3">
+          <label>画像</label><br>
+          <%= f.attachment_field :image %>
+        </div>
+        <div class="field mb-3">
+          <label>カフェ名</label><br>
+          <%= f.text_area :name, size: "50" %>
+        </div>
+        <div class="field mb-3">
+          <label>キャプション</label><br>
+          <%= f.text_area :caption, size: "50" %>
+        </div>
+        <div class="field mb-3">
+          <label>都道府県</label><br>
+          <%= f.select :prefecture, PostImage.prefectures.keys, {} %>
+        </div>
+        <div class="field mb-3">
+          <label>所在地</label><br>
+          <%= f.text_area :address, size: "50" %>
+        </div>
+        <div class="action mb-3">
+          <%= f.submit '投稿',class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <h2>投稿一覧</h2>
+        <% @post_images.each do |post_image| %>
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <%=  link_to attachment_image_tag(post_image, :image, :fill, 200, 150, class: "card-img-top"), post_image_path(post_image) %>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= post_image.name %></h5>
+                  <p class="card-text"><%= post_image.caption %></p>
+                  <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
+                  <p class="card-text"><%= render 'favorites/favorites', post_image: post_image %></p>
+                  <p class="card-text"><%= render 'bookmarks/bookmark', post_image: post_image %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
   </div>
-  <div class="field">
-    <label>カフェ名</label>
-    <%= f.text_area :name %>
-  </div>
-  <div class="field">
-    <label>キャプション</label>
-    <%= f.text_area :caption %>
-  </div>
-  <div class="field">
-    <label>都道府県</label>
-    <%= f.select :prefecture, PostImage.prefectures.keys, {} %>
-  </div>
-  <div class="field">
-    <label>所在地</label>
-    <%= f.text_area :address %>
-  </div>
-  <div class="action">
-    <%= f.submit '投稿' %>
-  </div>
-<% end %>
-<h2>投稿一覧</h2>
-<% @post_images.each do |post_image| %>
-  <div>
-    <p>投稿ユーザー画像：<%= link_to attachment_image_tag(post_image, :image), post_image_path(post_image.id) %></p>
-    <p>カフェ名：<%= post_image.name %></p>
-    <p>キャプション：<%= post_image.caption %></p>
-    <p>所在地 : <%= post_image.prefecture %><%= post_image.address %></p>
-    <p>ユーザーネーム：<%= post_image.user.name %></p>
-    <%= render 'favorites/favorites', post_image: post_image %>
-    <%= render 'bookmarks/bookmark', post_image: post_image %>
-  </div>
-<% end %>
+</div>
