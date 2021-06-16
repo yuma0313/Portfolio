@@ -1,4 +1,5 @@
 class PostImagesController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
@@ -38,6 +39,6 @@ class PostImagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:name, :image, :caption, :address, :prefecture)
+    params.require(:post_image).permit(:name, :image, :caption, :address, :prefecture, :latitude, :longitude)
   end
 end

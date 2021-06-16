@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_post_images, through: :bookmarks, source: :post_image #ユーザーがブックマークした投稿を表示
   has_many :events, dependent: :destroy
-  
+
   devise :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
   # omniauthのコールバック時に呼ばれるメソッド
   def self.from_omniauth(auth)
@@ -19,11 +19,13 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
-  
+
   #テストログイン
   def self.guest
-    find_or_create_by(email: "test@com") do |user|
-      user.password = Rails.application.secrets.test_account_pass
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
   end
 end

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_normal_user, only: [:edit,:update,:withdraw]
   def show
     @user = User.find(params[:id])
     @users = User.all
@@ -29,5 +30,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name,:profile_image)
+  end
+
+  def ensure_normal_user #テストユーザーが退会できないようにする
+    if user = User.guest
+      redirect_to request.referer, alert: 'ゲストユーザー更新・削除はできません。'
+    end
   end
 end
