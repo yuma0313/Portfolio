@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if post_image.favorited_by?(current_user) %>
-    <p class="card-text">
-      <%= link_to post_image.favorites.count, post_image_favorites_path(post_image), method: :delete, class: "fas fa-heart heart_red" %>
-    </p>
+    <h5 class="card-text">
+      <%= link_to post_image.favorites.count, post_image_favorites_path(post_image), method: :delete, remote: :true, class: "fas fa-heart heart_red" %>
+    </h5>
   <% else %>
-    <p class="card-text">
-      <%= link_to post_image.favorites.count, post_image_favorites_path(post_image), method: :post, class: "fas fa-heart heart_blue" %>
-    </p>
+    <h5 class="card-text">
+      <%= link_to post_image.favorites.count, post_image_favorites_path(post_image), method: :post, remote: :true, class: "fas fa-heart heart_blue" %>
+    </h5>
   <% end %>
 <% end %>

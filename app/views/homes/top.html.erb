@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="top-box">
-        <h1 class="top-title text-center">ようこそ、CafeTownへ！</h1>
-        <p class=" top-text text-center">
+        <h1 class="top-title font-weight-bold text-center">ようこそ、CafeTownへ！</h1>
+        <p class="top-text text-center">
           このサイトは、カフェの共有・検索サイトになります。</br>
           会員でない方も投稿の閲覧はできますが、</br>
           新規投稿には会員登録が必要になります。
@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="mx-auto col-md-8 mt-4">
-  <h2>いいねランキング</h2>
+  <h2 class="font-weight-bold">いいねランキング</h2>
   <div class="container">
     <div class="row">
       <% @post_images.each do |post_image| %>
@@ -38,7 +38,7 @@
   </div>
 </div>
 <div class="mx-auto col-md-8 mt-4">
-  <h2>投稿一覧</h2>
+  <h2 class="font-weight-bold">新着の投稿</h2>
   <div class="container">
     <div class="row">
       <% @posts.last(4).each do |post_image| %>

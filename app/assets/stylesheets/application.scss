@@ -18,3 +18,48 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import "simple_calendar";
+
+header {
+    background-color:#FFFFE0;
+}
+
+// .about-bg {
+//   background-image: url('about.jpg');
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   height: 100vh;
+//   position: relative;
+//   background-position: center;
+// }
+
+.about-bg-wrapper {
+   position: relative;
+   height: 100vh;
+   background: rgba(0, 0, 0, 0.5);
+}
+
+.about_content {
+ text-align: center;
+ color: #fff;
+ margin-top: 240px;
+ line-height: 1.5rem;
+}
+
+.about-text1 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.about-text2 {
+  line-height: 2.0rem;
+  letter-spacing: 6px;
+  font-weight: bold;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.map{
+    
+}

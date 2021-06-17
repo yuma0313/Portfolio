@@ -1,0 +1,1 @@
+$('#post_image_<%= @post_image.id %>_favorite').html('<%= j(render partial: 'favorites/favorites', locals: { post_image: @post_image }) %>');

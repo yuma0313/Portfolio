@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     :omniauth_callbacks => 'users/omniauth_callbacks',
-    # registrations: 'users/registrations',
-    # :sessions => 'users/sessions'
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions'
   }
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :post_images do
-    resource :favorites, only: [:index,:create, :destroy,]
-    resource :bookmarks, only: [:index,:create, :destroy,]
+    resource :favorites, only: [:create, :destroy,]
+    resource :bookmarks, only: [:create, :destroy,]
     collection do
       get "search"
     end
@@ -27,5 +27,4 @@ Rails.application.routes.draw do
   patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw_user'
   put 'users/:id/withdraw' => 'users#withdraw'
   get "/about" => "homes#about" ,as: "about"
-  # get '/search', to: 'search#search'
 end
