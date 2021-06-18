@@ -9,7 +9,7 @@ class PostImagesController < ApplicationController
 
   def index
     @post_image = PostImage.new
-    @post_images = PostImage.all
+    @post_images = PostImage.all.page(params[:page]).per(4)
   end
 
   def show
