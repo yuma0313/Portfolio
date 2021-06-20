@@ -17,16 +17,6 @@ class User < ApplicationRecord
     super && (self.is_valid == true)
   end
 
-  #SNS認証
-  devise :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
-  # omniauthのコールバック時に呼ばれるメソッド
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-    end
-  end
-
   #テストログイン
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -34,7 +24,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
-  
+
   #SNS認証
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first

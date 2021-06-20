@@ -4,7 +4,7 @@
       <%= render 'users/menu' %>
     </div>
     <div class="col-md-8">
-    	<div class="schedule">今後の予定一覧</div>
+    	<h4 class="schedule font-weight-bold mt-3">今後の予定</h4>
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -16,11 +16,12 @@
           <% @events.each do |event| %>
             <tr>
               <td><%= link_to event.title , event %></td>
-              <td><%= event.start_time.strftime("%m-%d") %></td>
+              <td><%= event.start_time.strftime("%m/%d") %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <h4 class="font-weight-bold mt-4">スケジュール登録</h4>
       <%= form_with(model: @event, local: true) do |f| %>
       <div class="title">
         <div class="form-tag">タイトル</div>

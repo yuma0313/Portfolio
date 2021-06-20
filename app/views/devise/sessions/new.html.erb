@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
   <div class="row">
     <div class="col-md-4">
       <div class="card">
@@ -6,15 +6,15 @@
           テストユーザーとしてログイン
         </div>
         <div class="card-body">
-          <p class="card-text text-center"><%= link_to 'お試しログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary fas fa-power-off' %></p>
+          <p class="card-text text-center"><%= link_to 'お試しログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary fas fa-power-off w-75' %></p>
         </div>
       </div>
-      <div class="card">
+      <div class="card mt-3">
         <div class="card-header">SNSアカウントでログイン</div>
         <div class="card-body">
-          <p class="card-text text-center"><%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-primary' %></p>
-          <p class="card-text text-center"><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, method: :post, class: 'btn btn-info btn-lg' %></p>
-          <p class="card-text text-center"><%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: 'btn btn-danger' %></p>
+          <p class="card-text text-center"><%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-primary w-75' %></p>
+          <p class="card-text text-center"><%= link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, method: :post, class: 'btn btn-info w-75' %></p>
+          <p class="card-text text-center"><%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: 'btn btn-danger w-75' %></p>
         </div>
       </div>
     </div>

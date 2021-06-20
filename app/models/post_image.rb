@@ -28,13 +28,12 @@ class PostImage < ApplicationRecord
 
   def self.search(params)
     post_images = PostImage.all
-    if params[:prefecture] && params[:prefecture] != "--未選択--"
-      prefecture = PostImage.prefectures[params[:prefecture]]
-      post_images = post_images.where(['prefecture LIKE(?)', "%#{prefecture}%"])
+    if params[:prefecture] && params[:prefecture] != "都道府県を選択"
+      post_images = self.where(prefecture: "#{params[:prefecture]}")
     end
     if params[:keyword].present?
       keyword = params[:keyword]
-      post_images = post_images.where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%","%#{keyword}%"])
+      post_images = self.where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%","%#{keyword}%"])
     end
     post_images
   end
