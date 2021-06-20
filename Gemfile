@@ -76,16 +76,15 @@ gem 'kaminari','~> 1.2.1'
 gem 'rails-i18n'
 gem 'paranoia'
 gem "simple_calendar", "~> 2.0"
-gem 'omniauth-google-oauth2'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 gem 'rubocop', require:false
 gem 'rubocop-rails', require:false
 gem 'simple_calendar', '~> 2.0'
 gem 'geocoder'
+gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 group :production do

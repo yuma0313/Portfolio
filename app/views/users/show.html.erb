@@ -1,4 +1,4 @@
-<div class="container-fluid box-background">
+<div class="container">
   <div class="row">
     <div class="col-md-4">
       <%#= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
@@ -11,7 +11,7 @@
           <div class="card mb-3">
             <div class="row g-0">
               <div class="col-md-4">
-                <%=  link_to attachment_image_tag(post_image, :image, :fill, 200, 150, class: "card-img-top"), post_image_path(post_image) %>
+                <%=  link_to attachment_image_tag(post_image, :image, :fill, 250, 200, class: "card-img-top"), post_image_path(post_image) %>
               </div>
               <div class="col-md-8">
                 <div class="card-body">

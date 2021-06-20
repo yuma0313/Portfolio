@@ -12,46 +12,54 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "CafeTown", root_path %>
-        <nav>
-          <ul class="nav justify-content-end">
-            <li class="nav-item m-3">
-              <a class="nav-link"><%= link_to "About", about_path, class: 'nav-link fas fa-coffee' %></a>
-            </li>
-            <li class="nav-item m-3">
-              <a class="nav-link"><%= link_to "投稿一覧", post_images_path, class: 'nav-link fas fa-star' %></a>
-            </li>
-            <%if user_signed_in? %>
-            <li class="nav-item m-3">
-              <a class="nav-link"><%= link_to "マイページ", user_path(current_user), class: 'nav-link fas fa-user' %></a>
-            </li>
-            <li class="nav-item m-3">
-              <a class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link fas fa-sign-out-alt' %></a>
-            </li>
-            <% else %>
-            <li class="nav-item m-3">
-              <a class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link fas fa-user-edit' %></a>
-            </li>
-            <li class="nav-item m-3">
-              <a class="nav-link"><%= link_to "ログイン", new_user_session_path, class: 'nav-link fas fa-sign-in-alt' %></a>
-            </li>
-            <% end %>
-          </ul>
-          <ul class="nav justify-content-center">
-            <div class="search">
-              <%= form_with(url: search_post_images_path, local: true, method: :get, class: "search-form") do |form| %>
-                <%= form.text_field :keyword, placeholder: "地名や店名を入力...", class: "search-input" %>
-                <%= form.select :prefecture, PostImage.prefectures.keys.to_a, {} %>
-                <%= form.submit "検索", class: "search-btn" %>
+    <div id="wrapper">
+      <header class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <h4 class="font-weight-bold"><%= link_to "CafeTown", root_path %></h4>
+          <nav>
+            <ul class="nav justify-content-end">
+              <li class="nav-item m-3">
+                <a class="nav-link"><%= link_to "About", about_path, class: 'nav-link fas fa-coffee' %></a>
+              </li>
+              <li class="nav-item m-3">
+                <a class="nav-link"><%= link_to "投稿一覧", post_images_path, class: 'nav-link fas fa-star' %></a>
+              </li>
+              <%if user_signed_in? %>
+              <li class="nav-item m-3">
+                <a class="nav-link"><%= link_to "マイページ", user_path(current_user), class: 'nav-link fas fa-user' %></a>
+              </li>
+              <li class="nav-item m-3">
+                <a class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link fas fa-sign-out-alt' %></a>
+              </li>
+              <% else %>
+              <li class="nav-item m-3">
+                <a class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link fas fa-user-edit' %></a>
+              </li>
+              <li class="nav-item m-3">
+                <a class="nav-link"><%= link_to "ログイン", new_user_session_path, class: 'nav-link fas fa-sign-in-alt' %></a>
+              </li>
               <% end %>
-            </div>
-          </ul>
-        </nav>
-      </div>
-　　</header>
-　　<%= flash[:error] %>
-    <%= yield %>
+            </ul>
+            <ul class="nav justify-content-center">
+              <div class="search">
+                <%= form_with(url: search_post_images_path, local: true, method: :get, class: "search-form") do |form| %>
+                  <%= form.text_field :keyword, placeholder: "地名や店名を入力...", class: "search-input" %>
+                  <%= form.select :prefecture, PostImage.prefectures.keys.to_a, {} %>
+                  <%= form.submit "検索", class: "search-btn" %>
+                <% end %>
+              </div>
+            </ul>
+          </nav>
+        </div>
+  　　</header>
+      <%= yield %>
+      <footer>
+        <div class="py-3 mt-auto">
+          <div class="container">
+            <small class="text-muted font-weight-bold">CafeTown</small>
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

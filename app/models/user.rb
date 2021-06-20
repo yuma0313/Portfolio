@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_post_images, through: :bookmarks, source: :post_image #ユーザーがブックマークした投稿を表示
   has_many :events, dependent: :destroy
-  has_many :sns
+  has_many :sns_credentials, dependent: :destroy
 
   #退会したユーザーをログインできなくする
   def active_for_authentication?
@@ -47,7 +47,7 @@ class User < ApplicationRecord
         )
       else
         user = User.new(
-          nickname: auth.info.name,
+          name: auth.info.name,
           email: auth.info.email,
         )
         sns = SnsCredential.new(
@@ -56,7 +56,7 @@ class User < ApplicationRecord
         )
       end
       return { user: user ,sns: sns}
-    end
+  end
 
    def self.with_sns_data(auth, snscredential)
     user = User.where(id: snscredential.user_id).first
@@ -81,5 +81,5 @@ class User < ApplicationRecord
       sns = without_sns_data(auth)[:sns]
     end
     return { user: user ,sns: sns}
-  end
+   end
 end

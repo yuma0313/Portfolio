@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="top-box">
-        <h1 class="top-title font-weight-bold text-center">ようこそ、CafeTownへ！</h1>
-        <p class="top-text text-center">
+        <h1 class="top-title font-weight-bold">ようこそ、CafeTownへ！</h1>
+        <p class="top-text">
           このサイトは、カフェの共有・検索サイトになります。</br>
           会員でない方も投稿の閲覧はできますが、</br>
           新規投稿には会員登録が必要になります。
@@ -12,6 +12,9 @@
     </div>
   </div>
 </div>
+<% unless user_signed_in? %>
+<p class="text-center m-4 mx-auto"><%= link_to 'お試しログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary fas fa-power-off btn-lg' %></p>
+<% end %>
 <div class="mx-auto col-md-8 mt-4">
   <h2 class="font-weight-bold">いいねランキング</h2>
   <div class="container">

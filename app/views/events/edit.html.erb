@@ -1,4 +1,4 @@
-<div class="container-fluid box-background">
+<div class="container">
   <div class="row">
     <div class="col-md-4">
       <%= render 'users/menu' %>
@@ -6,7 +6,7 @@
     <div class="col-md-8">
       <%= form_with(model: @event, local: true) do |f| %>
         <div class="title">
-          <div class="form-tag mb-2">タイトル</div>
+          <div class="form-tag mt-3 mb-2">タイトル</div>
           <%= f.text_field :title,size: '50' %>
         </div>
         <div class="time">
