@@ -1,4 +1,12 @@
 <div class="container mt-3">
+  <% if @post_image.errors.any? %>
+    <h3><%= @post_image.errors.count %> errors prohibited this obj from being saved:</h3>
+        <ul>
+            <% @post_image.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+　<% end %>
   <div class="row">
     <div class="col-md-4 text-left mb-3">
       <h2 class="font-weight-bold">新規投稿フォーム</h2>

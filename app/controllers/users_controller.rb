@@ -8,6 +8,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.id = current_user.id
+      render'edit'
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
@@ -15,10 +20,13 @@ class UsersController < ApplicationController
       redirect_to request.referer
     else
       @user = User.find(params[:id])
-      @user.update(user_params)
-      redirect_to user_path(current_user)
+      if @user.update(user_params)
+        redirect_to user_path(current_user)
+      else
+        render'edit'
+      end
     end
-    flash[:success] = "You have updated book successfully."
+    flash[:success] = "変更を保存しました"
   end
 
   def unsubscribe #退会画面
@@ -32,7 +40,7 @@ class UsersController < ApplicationController
       @user = current_user
       @user.update(is_valid: false)
       reset_session
-      redirect_to root_path, notice: 'またのご利用をお待ちしております。'
+      redirect_to root_path, notice: 'またのご利用をお待ちしております'
     end
   end
 

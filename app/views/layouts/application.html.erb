@@ -52,6 +52,13 @@
           </nav>
         </div>
   　　</header>
+        <% if flash.keys.length > 0 %>
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>">
+              <%= message %>
+            </div>
+          <% end %>
+        <% end %>
       <%= yield %>
       <footer>
         <div class="py-3 mt-auto">

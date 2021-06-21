@@ -3,8 +3,15 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    if @post_image.save
+      flash[:success] = "投稿しました"
+      redirect_to post_images_path
+    else
+      @post_image = PostImage.new
+      @post_images = PostImage.all.page(params[:page]).per(4)
+      flash[:success] = "投稿失敗しました"
+      render'index'
+    end
   end
 
   def index
@@ -18,6 +25,11 @@ class PostImagesController < ApplicationController
 
   def edit
     @post_image = PostImage.find(params[:id])
+    if @post_image.user.id == current_user.id
+      render'edit'
+    else
+      redirect_to post_images_path
+    end
   end
 
   def destroy
@@ -28,8 +40,12 @@ class PostImagesController < ApplicationController
 
   def update
     @post_image = PostImage.find(params[:id])
-    @post_image.update(post_image_params)
-    redirect_to post_image_path(@post_image)
+    if @post_image.update(post_image_params)
+      redirect_to post_image_path(@post_image)
+    else
+      render'edit'
+    end
+    flash[:success] = "変更を保存しました"
   end
 
   def search

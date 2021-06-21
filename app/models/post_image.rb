@@ -13,6 +13,9 @@ class PostImage < ApplicationRecord
     bookmarks.where(user_id: user.id).exists?
   end
 
+  validates :name, presence: true
+  validates :caption, presence: true,length:{maximum:200}
+
   enum prefecture: {
     "都道府県を選択": 0,
     北海道: 1, 青森県: 2, 岩手県: 3, 宮城県: 4, 秋田県: 5, 山形県: 6, 福島県: 7,

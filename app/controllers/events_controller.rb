@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @events = current_user.events
     @event = Event.new
@@ -15,18 +16,29 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
-    @event.save
-    redirect_to request.referer
+    if @event.save
+      redirect_to request.referer
+    else
+      render'index'
+    end
+    flash[:success] = "スケジュールを登録しました"
   end
 
   def edit
-    @event = Event.find(params[:id])
+    if @event.user.id == current_user.id
+      @event = Event.find(params[:id])
+    else
+      redirect_to events_path
+    end
   end
 
   def update
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    redirect_to events_path
+    if @event.update(event_params)
+      redirect_to events_path
+    else
+      render'edit'
+    end
   end
 
   def destroy
