@@ -20,7 +20,15 @@
 @import "simple_calendar";
 
 header {
-  background-color:#FFFFE0;
+  background-color: #D2B48C;
+}
+
+.nav-link {
+  color: white;
+}
+
+.link {
+  color: black;
 }
 
 body,
@@ -32,7 +40,8 @@ body,
 
 footer {
   margin-top: auto;
-  background-color:#FFFFE0;
+  background-color:#D2B48C;
+  color: white;
 }
 
 .container-fluid {
@@ -120,4 +129,16 @@ footer {
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
+}
+
+.heart-red {
+  color: #e54747;
+}
+
+.heart-blue {
+  color: black
+}
+
+.bookbtn {
+  color: black
 }

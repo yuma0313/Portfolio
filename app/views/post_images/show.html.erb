@@ -21,48 +21,45 @@
           </div>
         </div>
       </div>
-        <div id="map"></div>
-        <style>
-        #map{
-          margin: 0 auto;
-          height: 350px;
-          width: 75%;
-        }
-        </style>
-        <% if @post_image.latitude.present? or @post_image.longitude.present? %>
-        <script type="text/javascript">
+      <div id="map"></div>
+      <style>
+      #map{
+        margin: 0 auto;
+        height: 350px;
+        width: 75%;
+      }
+      </style>
+      <% if @post_image.latitude.present? or @post_image.longitude.present? %>
+      <script type="text/javascript">
 
-            function initMap() {
-                var test = {lat: <%= @post_image.latitude %>, lng: <%= @post_image.longitude %>};
-                // var test = {lat: -34.397, lng: 150.644};
-                // test.lat = <%#= @post_image.latitude %>
-                // test.lng = <%#= @post_image.longitude %>
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 15,
-                    center: test
-                });
-                var transitLayer = new google.maps.TransitLayer();
-                transitLayer.setMap(map);
+          function initMap() {
+              var test = {lat: <%= @post_image.latitude %>, lng: <%= @post_image.longitude %>};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: test
+              });
+              var transitLayer = new google.maps.TransitLayer();
+              transitLayer.setMap(map);
 
-                var contentString = '住所：<%#= @post_image.prefecture %><%#= @post_image.address %>';
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
+              var contentString = '住所：<%#= @post_image.prefecture %><%#= @post_image.address %>';
+              var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+              });
 
-                var marker = new google.maps.Marker({
-                    position:test,
-                    map: map,
-                    title: contentString
-                });
+              var marker = new google.maps.Marker({
+                  position:test,
+                  map: map,
+                  title: contentString
+              });
 
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                });
-            }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-        </script>
-        <% end %>
+              marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+              });
+          }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+      </script>
+      <% end %>
       <div class="btn">
         <%= link_to "投稿一覧に戻る",post_images_path, class: 'btn btn-secondary mt-2' %>
       </div>

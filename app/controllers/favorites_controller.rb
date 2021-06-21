@@ -1,6 +1,5 @@
 class FavoritesController < ApplicationController
-  def index
-  end
+  def index; end
 
   def create
     @post_image = PostImage.find(params[:post_image_id])

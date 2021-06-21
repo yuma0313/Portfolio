@@ -38,13 +38,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i(mri mingw x64_mingw)
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -57,36 +57,35 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
-  # ここに移動
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'jquery-rails'
-gem 'devise'
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
-gem 'font-awesome-sass', '~> 5.13'
 gem 'bootstrap', '~> 4.5'
-gem 'kaminari','~> 1.2.1'
-gem 'rails-i18n'
-gem 'paranoia'
-gem "simple_calendar", "~> 2.0"
-gem 'rubocop', require:false
-gem 'rubocop-rails', require:false
-gem 'simple_calendar', '~> 2.0'
+gem 'devise'
+gem 'dotenv-rails'
+gem 'font-awesome-sass', '~> 5.13'
 gem 'geocoder'
+gem 'jquery-rails'
+gem 'kaminari', '~> 1.2.1'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-twitter'
+gem 'paranoia'
 gem 'rails-i18n'
-gem 'dotenv-rails'
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+gem 'refile-mini_magick'
+# gem 'rubocop', require: false
+gem 'rubocop-airbnb'
+# gem 'rubocop-rails', require: false
+gem 'simple_calendar', '~> 2.0'
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
 group :production do
   gem 'mysql2'
 end

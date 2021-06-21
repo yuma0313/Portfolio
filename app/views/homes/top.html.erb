@@ -23,7 +23,7 @@
         <div class="col-md-3">
           <div>
           　<p class="card-text">いいね数:<%= post_image.favorites.count %></p>
-            <%= link_to post_image_path(post_image), class: "no-underline", 'data-turbolinks': false do %>
+            <%= link_to post_image_path(post_image), class: "link no-underline", 'data-turbolinks': false do %>
               <%= attachment_image_tag post_image, :image, :fill, 200, 150, class: "card-img-top " %>
               <div class="card-body">
                 <h6 class="card-title">
@@ -47,7 +47,7 @@
       <% @posts.last(4).each do |post_image| %>
         <div class="col-md-3">
           <div>
-            <%= link_to post_image_path(post_image), class: "no-underline", 'data-turbolinks': false do %>
+            <%= link_to post_image_path(post_image), class: "link no-underline", 'data-turbolinks': false do %>
               <%= attachment_image_tag post_image, :image, :fill, 200, 150, class: "card-img-top " %>
               <div class="card-body">
                 <h6 class="card-title">
@@ -63,7 +63,7 @@
       <% end %>
     </div>
     <div class="all_post_images">
-      <%= link_to "全ての投稿を見る >", post_images_path, class: "no-underline" %>
+      <%= link_to "全ての投稿を見る >", post_images_path, class: "link no-underline" %>
     </div>
   </div>
 </div>
