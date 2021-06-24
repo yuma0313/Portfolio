@@ -17,8 +17,12 @@
                   <h5 class="card-title"><%= post_image.name %></h5>
                   <p class="card-text"><%= post_image.caption %></p>
                   <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
-                  <p class="card-text"><%= render 'favorites/favorites', post_image: post_image %></p>
-                  <p class="card-text"><%= render 'bookmarks/bookmark', post_image: post_image %></p>
+                  <div id="post_image_<%= post_image.id %>_favorite">
+                    <%= render partial: 'favorites/favorites', locals: { post_image: post_image } %>
+                  </div>
+                  <div id="post_image_<%= post_image.id %>_bookmark">
+                    <%= render 'bookmarks/bookmark', post_image: post_image %>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 class PostImagesController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create,:edit,:update,:destroy]
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
