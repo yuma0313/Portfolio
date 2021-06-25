@@ -9,7 +9,7 @@ class PostImagesController < ApplicationController
     else
       @post_image = PostImage.new
       @post_images = PostImage.all.page(params[:page]).per(4)
-      flash[:success] = "投稿失敗しました"
+      flash[:danger] = "投稿失敗しました"
       render'index'
     end
   end
