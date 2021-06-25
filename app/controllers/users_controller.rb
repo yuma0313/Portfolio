@@ -21,12 +21,12 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
       if @user.update(user_params)
+        flash[:success] = "変更を保存しました"
         redirect_to user_path(current_user)
       else
         render'edit'
       end
     end
-    flash[:success] = "変更を保存しました"
   end
 
   def unsubscribe #退会画面
