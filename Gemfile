@@ -53,12 +53,12 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  # gem 'pry-byebug'
+  # gem 'pry-rails'
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
@@ -69,6 +69,7 @@ gem 'bootstrap', '~> 4.5'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'font-awesome-sass', '~> 5.13'
+gem 'pry-byebug'
 gem 'geocoder'
 gem 'jquery-rails'
 gem 'kaminari', '~> 1.2.1'

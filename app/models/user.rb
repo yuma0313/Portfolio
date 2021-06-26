@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :sns_credentials, dependent: :destroy
 
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
+
   #退会したユーザーをログインできなくする
   def active_for_authentication?
     super && (self.is_valid == true)
