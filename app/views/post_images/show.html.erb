@@ -3,12 +3,12 @@
     <div class="card border-light col-8">
       <div class="card-body">
         <h1 class="card-title text-center"><%= @post_image.name %></h1>
-        <div class="text-center"><%= attachment_image_tag @post_image, :image, :fill, 600,450 %></div>
-        <h5 class="card-text text-center m-3"><%= @post_image.caption %></h5>
-        <h5 class="card-text text-center mb-3"><%= @post_image.prefecture %><%= @post_image.address %></h5>
-        <h5 class="card-text text-center mb-3">ユーザーネーム：<%= @post_image.user.name %></h5>
-        <h5 class="card-text text-center mb-3">投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></h5>
-        <div class="text-center">
+        <div class=""><%= attachment_image_tag @post_image, :image, :fill, 600,450 %></div>
+        <h5 class="card-text m-3"><%= @post_image.caption %></h5>
+        <h5 class="card-text mb-3"><%= @post_image.prefecture %><%= @post_image.address %></h5>
+        <h5 class="card-text mb-3">ユーザーネーム：<%= @post_image.user.name %></h5>
+        <h5 class="card-text mb-1">投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></h5>
+        <div class="">
           <% if @post_image.user == current_user %>
             <%= link_to "削除", post_image_path(@post_image), method: :delete, class: 'btn btn-danger m-3'%>
             <%= link_to "編集", edit_post_image_path(@post_image),class: 'btn btn-success' %>
@@ -24,7 +24,6 @@
       <div id="map"></div>
       <style>
       #map{
-        margin: 0 auto;
         height: 350px;
         width: 75%;
       }
@@ -60,7 +59,7 @@
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
       </script>
       <% end %>
-      <div class="btn">
+      <div class="btn text-left">
         <%= link_to "投稿一覧に戻る",post_images_path, class: 'btn btn-secondary mt-2' %>
       </div>
     </div>

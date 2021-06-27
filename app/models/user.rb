@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :sns_credentials, dependent: :destroy
   
-  attachment :image
+  attachment :profile_image
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
