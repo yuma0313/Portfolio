@@ -5,6 +5,22 @@
         <h1 class="card-title text-center"><%= @post_image.name %></h1>
         <div class=""><%= attachment_image_tag @post_image, :image, :fill, 600,450 %></div>
         <h5 class="card-text m-3"><%= @post_image.caption %></h5>
+        <h5 class="relative-post-rate mb-3">
+          <span>評価：</span>
+          <span id="star-rate-<%= @post_image.id %>"></span>
+          <script>
+            $('#star-rate-<%= @post_image.id %>').raty({
+              size: 36,
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              readOnly: true,
+              score: <%= @post_image.rate %>,
+            });
+          </script>
+          <%= @post_image.rate %>
+        </h5>
         <h5 class="card-text mb-3"><%= @post_image.prefecture %><%= @post_image.address %></h5>
         <h5 class="card-text mb-3">ユーザーネーム：<%= @post_image.user.name %></h5>
         <h5 class="card-text mb-1">投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></h5>

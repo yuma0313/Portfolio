@@ -15,7 +15,7 @@
 <% unless user_signed_in? %>
 <p class="text-center m-4 mx-auto"><%= link_to 'お試しログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary fas fa-power-off btn-lg' %></p>
 <% end %>
-<% if @post_image.present? %>
+<% if @post_images.present? %>
 <div class="mx-auto col-md-8 mt-4">
   <h2 class="font-weight-bold"><i class="fas fa-crown"></i>いいねランキング</h2>
   <div class="container">

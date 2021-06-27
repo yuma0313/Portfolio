@@ -4,7 +4,7 @@
       <%= render 'users/menu' %>
     </div>
     <div class="col-md-8">
-    	<h4 class="schedule font-weight-bold mt-3">今後の予定</h4>
+    	<h4 class="schedule font-weight-bold mt-3"><i class="fas fa-calendar-check"></i>今後の予定</h4>
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -21,7 +21,7 @@
           <% end %>
         </tbody>
       </table>
-      <h4 class="font-weight-bold mt-4">スケジュール登録</h4>
+      <h4 class="font-weight-bold mt-4"><i class="fas fa-pen-fancy"></i>スケジュール登録</h4>
       <%= form_with(model: @event, local: true) do |f| %>
       <div class="title">
         <div class="form-tag">タイトル</div>

@@ -9,7 +9,7 @@
 　<% end %>
   <div class="row">
     <div class="col-md-4 text-left mb-3">
-      <h2 class="font-weight-bold">新規投稿フォーム</h2>
+      <h2 class="font-weight-bold"><i class="fas fa-paper-plane"></i>新規投稿フォーム</h2>
       <%= form_with model: @post_image, method: :post, local:true do |f| %>
         <div class="field mb-3">
           <label>画像</label><br>
@@ -17,19 +17,34 @@
         </div>
         <div class="field mb-3">
           <label>カフェ名</label><br>
-          <%= f.text_area :name, size: "40" %>
+          <%= f.text_area :name, class: 'form-control' %>
         </div>
         <div class="field mb-3">
           <label>キャプション</label><br>
-          <%= f.text_area :caption, size: "40" %>
+          <%= f.text_area :caption, class: 'form-control' %>
         </div>
+        <div class="field mb-3" id="star">
+          <label>評価</label>
+          <%= f.hidden_field :rate, id: :review_star %>
+        </div>
+        <script>
+        $('#star').empty();
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'post_image[rate]',
+          half: true,
+        });
+        </script>
         <div class="field mb-3">
           <label>都道府県</label><br>
           <%= f.select :prefecture, PostImage.prefectures.keys, {} %>
         </div>
         <div class="field mb-3">
           <label>所在地</label><br>
-          <%= f.text_area :address, size: "40" %>
+          <%= f.text_area :address, class: 'form-control' %>
         </div>
         <div class="action mb-3">
           <%= f.submit '投稿',class: "btn btn-success" %>
@@ -37,26 +52,9 @@
       <% end %>
     </div>
     <div class="col-md-8">
-      <h2 class="font-weight-bold">投稿一覧</h2>
-        <% @post_images.each do |post_image| %>
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <%=  link_to attachment_image_tag(post_image, :image, :fill, 250, 200, class: "card-img-top"), post_image_path(post_image) %>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"><%= post_image.name %></h5>
-                  <p class="card-text"><%= post_image.caption %></p>
-                  <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
-                  <div id="post_image_<%= post_image.id %>_favorite"><%= render partial: 'favorites/favorites', locals: { post_image: post_image } %></div>
-                  <div id="post_image_<%= post_image.id %>_bookmark"><%= render partial: 'bookmarks/bookmark', locals: { post_image: post_image } %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <%= paginate(@post_images) %>
+      <h2 class="font-weight-bold"><i class="fas fa-edit"></i>投稿一覧</h2>
+      <%= render 'post_images/each', post_images: @post_images %>
+      <%= paginate(@post_images) %>
     </div>
   </div>
 </div>

@@ -5,29 +5,9 @@
     </div>
     <div class="col-md-8">
       <%= render 'users/info', user: @user %>
-      <h2 class="font-weight-bold">自分の投稿</h2>
-        <% @post_images.each do |post_image| %>
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <%=  link_to attachment_image_tag(post_image, :image, :fill, 250, 200, class: "card-img-top"), post_image_path(post_image) %>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"><%= post_image.name %></h5>
-                  <p class="card-text"><%= post_image.caption %></p>
-                  <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
-                  <div id="post_image_<%= post_image.id %>_favorite">
-                    <%= render partial: 'favorites/favorites', locals: { post_image: post_image } %>
-                  </div>
-                  <div id="post_image_<%= post_image.id %>_bookmark">
-                    <%= render 'bookmarks/bookmark', post_image: post_image %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+      <h2 class="font-weight-bold text-center"><i class="fas fa-edit"></i>自分の投稿</h2>
+      <%= render 'post_images/each', post_images: @post_images %>
+      <%= paginate(@post_images) %>
     </div>
   </div>
 </div>

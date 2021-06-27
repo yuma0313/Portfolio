@@ -4,25 +4,8 @@
       <%= render 'users/menu' %>
     </div>
     <div class="col-md-8">
-      <h2 class="font-weight-bold">いいねした投稿</h2>
-        <% current_user.favorited_post_images.each do |post_image| %>
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <%=  link_to attachment_image_tag(post_image, :image, :fill, 200, 150, class: "card-img-top"), post_image_path(post_image) %>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"><%= post_image.name %></h5>
-                  <p class="card-text"><%= post_image.caption %></p>
-                  <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
-                  <div id="post_image_<%= post_image.id %>_favorite"><%= render 'favorites/favorites', post_image: post_image %></div>
-                  <div id="post_image_<%= post_image.id %>_bookmark"><%= render 'bookmarks/bookmark', post_image: post_image %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+      <h2 class="font-weight-bold"><i class="fas fa-heart heart-red"></i>いいねした投稿</h2>
+        <%= render 'post_images/each', post_images: current_user.favorited_post_images %>
     </div>
   </div>
 </div>
