@@ -7,6 +7,11 @@
         <label>ユーザー名</label><br>
         <%= f.text_field:name, size: "50" %>
       </div>
+      <div>
+        <%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "no_image.jpg"%>
+        <label for="inputImage">プロフィール画像</label>
+        <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
+      </div>
       <div class="action mt-3">
        <%= f.submit'変更内容を保存',class: "action btn btn-secondary" %>
       </div>

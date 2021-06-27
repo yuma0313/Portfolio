@@ -24,7 +24,7 @@
               <li class="nav-item m-3">
                 <a class="nav-link"><%= link_to "みんなの投稿", post_images_path, class: 'nav-link fas fa-star' %></a>
               </li>
-              <%if user_signed_in? %>
+              <% if user_signed_in? %>
               <li class="nav-item m-3">
                 <a class="nav-link"><%= link_to "マイページ", user_path(current_user), class: 'nav-link fas fa-user' %></a>
               </li>
