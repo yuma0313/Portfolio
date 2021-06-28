@@ -1,4 +1,5 @@
 class PostImage < ApplicationRecord
+  extend Enumerize
   belongs_to :user
   attachment :image
 
@@ -15,7 +16,6 @@ class PostImage < ApplicationRecord
 
   validates :name, presence: true
   validates :caption, presence: true,length:{maximum:200}
-  validates :prefecture, inclusion: { in: [0] }
   validates :address, presence: true
   validates :image, presence: true
   validates :rate, presence: true

@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       render'edit'
     end
   end
-  
+
   #退会画面
   def unsubscribe
     @user = User.find(params[:id])
@@ -32,13 +32,17 @@ class UsersController < ApplicationController
 
   #退会処理
   def withdraw
-    if current_user.email = 'guest@example.com'
-      flash[:danger] = 'テストユーザーは退会できません'
+    if current_user.email == 'guest@example.com'
       redirect_to request.referer
+      flash[:danger] = 'テストユーザーは退会できません'
     else
-      @user = current_user
-      @user.update(is_valid: false)
-      reset_session
+      User.transaction do
+        @user = User.find(params[:id])
+        @user.post_images.delete_all
+        @user.update(is_valid: false)
+        reset_session
+      end
+      # binding.pry
       redirect_to root_path, notice: 'またのご利用をお待ちしております'
     end
   end

@@ -87,6 +87,7 @@ gem 'refile-mini_magick'
 gem 'rubocop-airbnb'
 # gem 'rubocop-rails', require: false
 gem 'simple_calendar', '~> 2.0'
+gem 'enumerize'
 gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
 group :production do
   gem 'mysql2'
