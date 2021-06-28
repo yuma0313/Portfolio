@@ -39,6 +39,7 @@ class UsersController < ApplicationController
       User.transaction do
         @user = User.find(params[:id])
         @user.post_images.delete_all
+        @user.favorites.delete_all
         @user.update(is_valid: false)
         reset_session
       end
