@@ -4,7 +4,7 @@
       <h2 class="font-weight-bold">プロフィール</h2>
       <%= form_with model: @user,local:true do |f| %>
       <div class="field mb-3">
-        <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg", size:'200x200', class: 'rounded-circle' %><br>
+        <%= attachment_image_tag @user, :profile_image, :fill, 500, 500, fallback: "no_image.jpg", size:'200x200', class: 'rounded-circle' %><br>
         <label for="inputImage">プロフィール画像</label>
         <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
       </div>

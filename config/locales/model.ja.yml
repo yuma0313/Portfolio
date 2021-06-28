@@ -12,3 +12,14 @@ ja:
         crypted_password: パスワード
         created_at: 作成日
         updated_at: 更新日
+
+ja:
+  activerecord:
+    attributes:
+      post_image:
+        name: カフェ名
+        caption: キャプション
+        address: 所在地
+        image: 画像
+        rate: 星評価
+        prefecture: 都道府県

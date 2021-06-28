@@ -15,9 +15,10 @@ class PostImage < ApplicationRecord
 
   validates :name, presence: true
   validates :caption, presence: true,length:{maximum:200}
-  validates :prefecture, presence: true
+  validates :prefecture, inclusion: { in: [0] }
   validates :address, presence: true
   validates :image, presence: true
+  validates :rate, presence: true
 
   enum prefecture: {
     "都道府県を選択": 0,

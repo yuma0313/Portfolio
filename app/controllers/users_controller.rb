@@ -16,25 +16,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.email == 'guest@example.com'
-      redirect_to request.referer
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "変更を保存しました"
+      redirect_to user_path(current_user)
     else
-      @user = User.find(params[:id])
-      if @user.update(user_params)
-        flash[:success] = "変更を保存しました"
-        redirect_to user_path(current_user)
-      else
-        render'edit'
-      end
+      render'edit'
     end
   end
-
-  def unsubscribe #退会画面
+  
+  #退会画面
+  def unsubscribe
     @user = User.find(params[:id])
   end
 
-  def withdraw #退会処理
+  #退会処理
+  def withdraw
     if current_user.email = 'guest@example.com'
+      flash[:danger] = 'テストユーザーは退会できません'
       redirect_to request.referer
     else
       @user = current_user

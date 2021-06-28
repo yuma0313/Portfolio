@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-8">
       <h2 class="font-weight-bold"><i class="fas fa-bookmark"></i>ブックマークした投稿</h2>
-        <%= render 'post_images/each', post_images: current_user.bookmarked_post_images %>
+        <%= render 'post_images/each', post_images: current_user.bookmarked_post_images, user: @user %>
     </div>
   </div>
 </div>

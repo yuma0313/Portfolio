@@ -1,13 +1,16 @@
 <% post_images.each do |post_image| %>
   <div class="card mb-3">
     <div class="row g-0">
-      <div class="col-md-4">
-        <%=  link_to attachment_image_tag(post_image, :image, :fill, 250, 200, class: "card-img-top"), post_image_path(post_image) %>
+      <div class="col-md-6">
+        <%=  link_to attachment_image_tag(post_image, :image, :fill, 500, 400, class: "card-img-top"), post_image_path(post_image) %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="card-body">
+          <h5 class="card-text font-weight-bold">
+            <%= attachment_image_tag post_image.user, :profile_image, :fill, 500, 500, fallback: "no_image.jpg", size:'50x50', class: 'rounded-circle' %>
+            <%= post_image.user.name %>
+          </h5>
           <h5 class="card-title"><%= post_image.name %></h5>
-          <p class="card-text"><%= post_image.caption %></p>
           <div class="relative-post-rate">
             <span>評価：</span>
             <span id="post_image-rate-<%= post_image.id %>"></span>
@@ -25,7 +28,7 @@
             </script>
             <%= post_image.rate %>
           </div>
-          <p class="card-text"><%= post_image.prefecture %><%= post_image.address %></p>
+          <p class="card-text mt-2"><%= post_image.prefecture %></p>
           <div id="post_image_<%= post_image.id %>_favorite"><%= render partial: 'favorites/favorites', locals: { post_image: post_image } %></div>
           <div id="post_image_<%= post_image.id %>_bookmark"><%= render partial: 'bookmarks/bookmark', locals: { post_image: post_image } %></div>
         </div>

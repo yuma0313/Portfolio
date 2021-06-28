@@ -1,13 +1,14 @@
 <div class="container mt-3">
   <% if @post_image.errors.any? %>
-    <h3><%= @post_image.errors.count %> errors prohibited this obj from being saved:</h3>
-        <ul>
-            <% @post_image.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-        </ul>
-　<% end %>
+  <h3><%= @post_image.errors.count %>件のエラー</h3>
+  <ul>
+    <% @post_image.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
   <div class="row">
+    <%= render'post_images/map' %>
     <div class="col-md-4 text-left mb-3">
       <h2 class="font-weight-bold"><i class="fas fa-paper-plane"></i>新規投稿フォーム</h2>
       <%= form_with model: @post_image, method: :post, local:true do |f| %>

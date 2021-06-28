@@ -6,7 +6,7 @@
     <div class="col-md-8">
       <%= render 'users/info', user: @user %>
       <h2 class="font-weight-bold text-center"><i class="fas fa-edit"></i>自分の投稿</h2>
-      <%= render 'post_images/each', post_images: @post_images %>
+      <%= render 'post_images/each', post_images: @post_images, user: @user %>
       <%= paginate(@post_images) %>
     </div>
   </div>

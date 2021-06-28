@@ -1,43 +1,66 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="card border-light col-8">
-      <div class="card-body">
-        <h1 class="card-title text-center"><%= @post_image.name %></h1>
-        <div class=""><%= attachment_image_tag @post_image, :image, :fill, 600,450 %></div>
-        <h5 class="card-text m-3"><%= @post_image.caption %></h5>
-        <h5 class="relative-post-rate mb-3">
-          <span>評価：</span>
-          <span id="star-rate-<%= @post_image.id %>"></span>
-          <script>
-            $('#star-rate-<%= @post_image.id %>').raty({
-              size: 36,
-              starOff: "<%= asset_path('star-off.png') %>",
-              starOn: "<%= asset_path('star-on.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              half: true,
-              readOnly: true,
-              score: <%= @post_image.rate %>,
-            });
-          </script>
-          <%= @post_image.rate %>
-        </h5>
-        <h5 class="card-text mb-3"><%= @post_image.prefecture %><%= @post_image.address %></h5>
-        <h5 class="card-text mb-3">ユーザーネーム：<%= @post_image.user.name %></h5>
-        <h5 class="card-text mb-1">投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></h5>
-        <div class="">
-          <% if @post_image.user == current_user %>
-            <%= link_to "削除", post_image_path(@post_image), method: :delete, class: 'btn btn-danger m-3'%>
-            <%= link_to "編集", edit_post_image_path(@post_image),class: 'btn btn-success' %>
-          <% end %>
-          <div id="post_image_<%= @post_image.id %>_favorite">
-            <%= render partial: 'favorites/favorites', locals: { post_image: @post_image } %>
-          </div>
-          <div id="post_image_<%= @post_image.id %>_bookmark">
-            <%= render 'bookmarks/bookmark', post_image: @post_image %>
+  <div class="col-md-11">
+    <div class="card m-3">
+      <div class="row">
+        <div class="col-md-6">
+          <%= attachment_image_tag(@post_image, :image, :fill, 500, 500, class: "card-img-show") %>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-text font-weight-bold">
+              <%= attachment_image_tag @post_image.user, :profile_image, :fill, 400, 400, fallback: "no_image.jpg", size:'50x50', class: 'rounded-circle' %>
+              <%= @post_image.user.name %>
+            </h5>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th class="bg-light text-center">所在地</th>
+                  <td class="text-center"><%= @post_image.prefecture %><%= @post_image.address %></th>
+                </tr>
+                <tr>
+                  <th class="bg-light text-center">カフェ名</th>
+                  <td class="text-center"><%= @post_image.name %></td>
+                </tr>
+                <tr>
+                  <th class="bg-light text-center">キャプション</th>
+                  <td class="text-center"><%= @post_image.caption %></td>
+                </tr>
+                <tr class="relative-post-rate">
+                  <th class="bg-light text-center">評価</th>
+                  <td class="text-center" id="post_image-rate-<%= @post_image.id %>">
+                    <script>
+                    　$('#post_image-rate-<%= @post_image.id %>').empty();
+                      $('#post_image-rate-<%= @post_image.id %>').raty({
+                        size: 36,
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        half: true,
+                        readOnly: true,
+                        score: <%= @post_image.rate %>,
+                      });
+                    </script>
+                    <%= @post_image.rate %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="">
+              <% if @post_image.user == current_user %>
+                <%= link_to "削除", post_image_path(@post_image), method: :delete, class: 'btn btn-danger m-3'%>
+                <%= link_to "編集", edit_post_image_path(@post_image),class: 'btn btn-success' %>
+              <% end %>
+              <div id="post_image_<%= @post_image.id %>_favorite">
+                <%= render partial: 'favorites/favorites', locals: { post_image: @post_image } %>
+              </div>
+              <div id="post_image_<%= @post_image.id %>_bookmark">
+                <%= render 'bookmarks/bookmark', post_image: @post_image %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div id="map"></div>
+      <div class="mx-auto" id="map"></div>
       <style>
       #map{
         height: 350px;
@@ -75,7 +98,7 @@
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
       </script>
       <% end %>
-      <div class="btn text-left">
+      <div class="btn text-center">
         <%= link_to "投稿一覧に戻る",post_images_path, class: 'btn btn-secondary mt-2' %>
       </div>
     </div>

@@ -7,9 +7,7 @@ class PostImagesController < ApplicationController
       flash[:success] = "投稿しました"
       redirect_to post_images_path
     else
-      @post_image = PostImage.new
       @post_images = PostImage.all.page(params[:page]).per(4)
-      flash[:danger] = "投稿失敗しました"
       render'index'
     end
   end
@@ -21,6 +19,7 @@ class PostImagesController < ApplicationController
 
   def show
     @post_image = PostImage.find(params[:id])
+    @user = current_user
   end
 
   def edit
@@ -41,11 +40,11 @@ class PostImagesController < ApplicationController
   def update
     @post_image = PostImage.find(params[:id])
     if @post_image.update(post_image_params)
-      redirect_to post_image_path(@post_image)
+       flash[:success] = "変更を保存しました"
+       redirect_to post_image_path(@post_image)
     else
       render'edit'
     end
-    flash[:success] = "変更を保存しました"
   end
 
   def search

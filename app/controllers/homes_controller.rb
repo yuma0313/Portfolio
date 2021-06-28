@@ -4,7 +4,6 @@ class HomesController < ApplicationController
       b.favorited_users.size <=> a.favorited_users.size
     end
     @posts = PostImage.all
-    # @post_image = PostImage.all.order(rate :desk)
   end
 
   def about; end

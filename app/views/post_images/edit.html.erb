@@ -1,4 +1,12 @@
 <div class="container">
+  <% if @post_image.errors.any? %>
+  <h3><%= @post_image.errors.count %>件のエラー</h3>
+    <ul>
+        <% @post_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+  <% end %>
   <div class="row justify-content-center">
     <div class="col-4 align-self-center">
       <h2 class="font-weight-bold text-center mt-3">投稿編集</h2>
@@ -13,7 +21,7 @@
       </div>
       <div class="field" id="star">
         <label>評価</label>
-        <%= f.hidden_field :rate, id: :review_star %>
+        <%= f.hidden_field :rate, id: :review_star, id: "post_image-rate" %>
       </div>
       <script>
       $('#star').empty();

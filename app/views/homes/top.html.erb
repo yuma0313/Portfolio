@@ -18,51 +18,11 @@
 <% if @post_images.present? %>
 <div class="mx-auto col-md-8 mt-4">
   <h2 class="font-weight-bold"><i class="fas fa-crown"></i>いいねランキング</h2>
-  <div class="container">
-    <div class="row">
-      <% @post_images.each do |post_image| %>
-        <div class="col-md-3">
-          <div>
-          　<p class="card-text">いいね数:<%= post_image.favorites.count %></p>
-            <%= link_to post_image_path(post_image), class: "link no-underline", 'data-turbolinks': false do %>
-              <%= attachment_image_tag post_image, :image, :fill, 200, 150, class: "card-img-top " %>
-              <div class="card-body">
-                <h6 class="card-title">
-                  <%= post_image.name %>
-                </h6>
-                <p class="card-text">
-                  <%= post_image.prefecture %>
-                </p>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'homes/top', post_images: @post_images %>
 </div>
 <div class="mx-auto col-md-8 mt-4">
-  <h2 class="font-weight-bold"><i class="fas fa-edit"></i></i>新着の投稿</h2>
-  <div class="container">
-    <div class="row">
-      <% @posts.last(4).each do |post_image| %>
-        <div class="col-md-3">
-          <div>
-            <%= link_to post_image_path(post_image), class: "link no-underline", 'data-turbolinks': false do %>
-              <%= attachment_image_tag post_image, :image, :fill, 200, 150, class: "card-img-top " %>
-              <div class="card-body">
-                <h6 class="card-title">
-                  <%= post_image.name %>
-                </h6>
-                <p class="card-text">
-                  <%= post_image.prefecture %>
-                </p>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+  <h2 class="font-weight-bold mb-3"><i class="fas fa-edit"></i></i>新着の投稿</h2>
+  <%= render 'homes/top', post_images: @posts.last(4) %>
     <div class="all_post_images">
       <%= link_to "全ての投稿を見る >", post_images_path, class: "link no-underline" %>
     </div>
