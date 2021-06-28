@@ -19,11 +19,13 @@
 カフェ好きが多い10~20代の若い層をターゲットにしました。
 
 ### 主な利用シーン
-カフェを探すとき
+カフェを探す・共有する
 
 ## 設計書
-ユーザー機能（顧客・管理者）、いいね機能、投稿機能、検索機能、デプロイ、リーダブルコードの意識
-
+ER図:https://drive.google.com/file/d/13XixUuzzfkqmizbRBT2Twz-HVGg1Yoit/view?usp=sharing
+画面遷移図:https://drive.google.com/file/d/1HEKtu0GXKmki6yk-mJmy057i0YF6T4hW/view?usp=sharing
+テーブル詳細設計:https://docs.google.com/spreadsheets/d/1-GLbJZ4aGLbsEzWSUZxtfmdcHlryxQoD/edit#gid=1243549839
+アプリケーション詳細設計:https://docs.google.com/spreadsheets/d/1BM2zGXCTgabyolF6i08MfgIUwAv1qCx0/edit#gid=549108681
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/18ycKZW2w8F7N3x_t9NmlVgM39Ttpt1BtTzRdFenu2_U/edit#gid=0
 
