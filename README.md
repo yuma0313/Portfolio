@@ -38,5 +38,6 @@ https://docs.google.com/spreadsheets/d/18ycKZW2w8F7N3x_t9NmlVgM39Ttpt1BtTzRdFenu
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- ドメイン取得:https://www.onamae.com/
+- 写真素材（フリー）:https://www.pakutaso.com/
+- イラスト素材:https://www.irasutoya.com/
