@@ -1,5 +1,4 @@
 class PostImage < ApplicationRecord
-  extend Enumerize
   belongs_to :user
   attachment :image
 
