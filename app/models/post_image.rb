@@ -34,12 +34,12 @@ class PostImage < ApplicationRecord
 
   def self.search(params)
     post_images = PostImage.all
-    if params[:prefecture] && params[:prefecture] != '都道府県を選択'
+    if params[:prefecture] && params[:prefecture] != '都道府県を選択' #正しく都道府県を選択している場合
       post_images = where(prefecture: (params[:prefecture]).to_s)
     end
-    if params[:keyword].present?
+    if params[:keyword].present? #キーワード検索の場合
       keyword = params[:keyword]
-      post_images = where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%", "%#{keyword}%"])
+      post_images = where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%", "%#{keyword}%"]) #住所・カフェ名の検索
     end
     post_images
   end

@@ -36,14 +36,13 @@ class UsersController < ApplicationController
       redirect_to request.referer
       flash[:danger] = 'テストユーザーは退会できません'
     else
-      User.transaction do
+      User.transaction do #退会したユーザーの投稿・いいねデータを削除
         @user = User.find(params[:id])
         @user.post_images.delete_all
         @user.favorites.delete_all
         @user.update(is_valid: false)
         reset_session
       end
-      # binding.pry
       redirect_to root_path, notice: 'またのご利用をお待ちしております'
     end
   end
