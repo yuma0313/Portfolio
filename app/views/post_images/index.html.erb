@@ -1,12 +1,5 @@
 <div class="container mt-3">
-  <% if @post_image.errors.any? %>
-  <h3><%= @post_image.errors.count %>件のエラー</h3>
-  <ul>
-    <% @post_image.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-  <% end %>
+  <%= render'post_images/error', post_image: @post_image %>
   <div class="row">
     <%= render'post_images/map' %>
     <div class="col-md-4 text-left mb-3">

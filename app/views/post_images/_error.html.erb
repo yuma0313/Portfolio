@@ -1,0 +1,8 @@
+<% if post_image.errors.any? %>
+<h3><%= post_image.errors.count %>件のエラー</h3>
+  <ul>
+      <% post_image.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+  </ul>
+<% end %>
