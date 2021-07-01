@@ -14,7 +14,7 @@ class PostImage < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :caption, presence: true,length:{maximum:200}
+  validates :caption, presence: true, length: { maximum: 200 }
   validates :address, presence: true
   validates :image, presence: true
   validates :rate, presence: true
@@ -34,12 +34,12 @@ class PostImage < ApplicationRecord
 
   def self.search(params)
     post_images = PostImage.all
-    if params[:prefecture] && params[:prefecture] != '都道府県を選択' #正しく都道府県を選択している場合
+    if params[:prefecture] && params[:prefecture] != '都道府県を選択' # 正しく都道府県を選択している場合
       post_images = where(prefecture: (params[:prefecture]).to_s)
     end
-    if params[:keyword].present? #キーワード検索の場合
+    if params[:keyword].present? # キーワード検索の場合
       keyword = params[:keyword]
-      post_images = where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%", "%#{keyword}%"]) #住所・カフェ名の検索
+      post_images = where(['address LIKE(?) OR name LIKE(?)', "%#{keyword}%", "%#{keyword}%"]) # 住所・カフェ名の検索
     end
     post_images
   end

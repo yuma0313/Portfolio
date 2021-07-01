@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to request.referer
     else
-      render'index'
+      render 'index'
     end
     flash[:success] = "スケジュールを登録しました"
   end
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to events_path
     else
-      render'edit'
+      render 'edit'
     end
   end
 
@@ -44,7 +44,8 @@ class EventsController < ApplicationController
   end
 
   private
+
   def event_params
-    params.require(:event).permit(:title,:start_time)
+    params.require(:event).permit(:title, :start_time)
   end
 end

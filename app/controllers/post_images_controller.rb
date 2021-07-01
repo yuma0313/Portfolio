@@ -1,14 +1,14 @@
 class PostImagesController < ApplicationController
-  before_action :authenticate_user!, only: [:create,:edit,:update,:destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   def create
     f_params = post_image_params
     @post_image = PostImage.new(f_params)
     @post_image.user_id = current_user.id
     is_prefecture_valid = PostImage.prefectures.keys.include?(f_params[:prefecture])
-    if f_params[:prefecture] == '都道府県を選択'  #'都道府県を選択'のまま投稿できない
+    if f_params[:prefecture] == '都道府県を選択' # '都道府県を選択'のまま投稿できない
       flash[:danger] = '都道府県を選択してください'
       redirect_to post_images_path
-    elsif !is_prefecture_valid #falseの場合
+    elsif !is_prefecture_valid # falseの場合
       flash[:notice] = '不正な操作です'
       redirect_to root_path
     elsif @post_image.save
@@ -48,10 +48,10 @@ class PostImagesController < ApplicationController
   def update
     @post_image = PostImage.find(params[:id])
     if @post_image.update(post_image_params)
-       flash[:success] = "変更を保存しました"
-       redirect_to post_image_path(@post_image)
+      flash[:success] = "変更を保存しました"
+      redirect_to post_image_path(@post_image)
     else
-      render'edit'
+      render 'edit'
     end
   end
 

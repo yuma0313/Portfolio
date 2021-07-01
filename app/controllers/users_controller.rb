@@ -8,8 +8,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user.id = current_user.id
-      render'edit'
+    if @user.id == current_user.id
+      render 'edit'
     else
       redirect_to user_path(current_user)
     end
@@ -21,22 +21,22 @@ class UsersController < ApplicationController
       flash[:success] = "変更を保存しました"
       redirect_to user_path(current_user)
     else
-      render'edit'
+      render 'edit'
     end
   end
 
-  #退会画面
+  # 退会画面
   def unsubscribe
     @user = User.find(params[:id])
   end
 
-  #退会処理
+  # 退会処理
   def withdraw
     if current_user.email == 'guest@example.com'
       redirect_to request.referer
       flash[:danger] = 'テストユーザーは退会できません'
     else
-      User.transaction do #退会したユーザーの投稿・いいねデータを削除
+      User.transaction do # 退会したユーザーの投稿・いいねデータを削除
         @user = User.find(params[:id])
         @user.post_images.delete_all
         @user.favorites.delete_all
@@ -48,8 +48,8 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name,:profile_image)
-  end
 
+  def user_params
+    params.require(:user).permit(:name, :profile_image)
+  end
 end

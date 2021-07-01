@@ -6,23 +6,23 @@ class User < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorited_post_images, through: :favorites, source: :post_image #ユーザーがいいねした投稿を表示
+  has_many :favorited_post_images, through: :favorites, source: :post_image # ユーザーがいいねした投稿を表示
   has_many :bookmarks, dependent: :destroy
-  has_many :bookmarked_post_images, through: :bookmarks, source: :post_image #ユーザーがブックマークした投稿を表示
+  has_many :bookmarked_post_images, through: :bookmarks, source: :post_image # ユーザーがブックマークした投稿を表示
   has_many :events, dependent: :destroy
   has_many :sns_credentials, dependent: :destroy
-  
+
   attachment :profile_image
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  #退会したユーザーをログインできなくする
+  # 退会したユーザーをログインできなくする
   def active_for_authentication?
-    super && (self.is_valid == true)
+    super && (is_valid == true)
   end
 
-  #テストログイン
+  # テストログイン
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.name = "ゲスト"
@@ -30,41 +30,41 @@ class User < ApplicationRecord
     end
   end
 
-  #SNS認証
+  # SNS認証
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
 
-      if user.present?
-        sns = SnsCredential.create(
-          uid: auth.uid,
-          provider: auth.provider,
-          user_id: user.id
-        )
-      else
-        user = User.new(
-          name: auth.info.name,
-          email: auth.info.email,
-        )
-        sns = SnsCredential.new(
-          uid: auth.uid,
-          provider: auth.provider
-        )
-      end
-      return { user: user ,sns: sns}
+    if user.present?
+      sns = SnsCredential.create(
+        uid: auth.uid,
+        provider: auth.provider,
+        user_id: user.id
+      )
+    else
+      user = User.new(
+        name: auth.info.name,
+        email: auth.info.email,
+      )
+      sns = SnsCredential.new(
+        uid: auth.uid,
+        provider: auth.provider
+      )
+    end
+    { user: user, sns: sns }
   end
 
-   def self.with_sns_data(auth, snscredential)
+  def self.with_sns_data(auth, snscredential)
     user = User.where(id: snscredential.user_id).first
-    unless user.present?
+    if user.blank?
       user = User.new(
         name: auth.info.name,
         email: auth.info.email,
       )
     end
-    return {user: user}
-   end
+    { user: user }
+  end
 
-   def self.find_oauth(auth)
+  def self.find_oauth(auth)
     uid = auth.uid
     provider = auth.provider
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
@@ -75,6 +75,6 @@ class User < ApplicationRecord
       user = without_sns_data(auth)[:user]
       sns = without_sns_data(auth)[:sns]
     end
-    return { user: user ,sns: sns}
-   end
+    { user: user, sns: sns }
+  end
 end
