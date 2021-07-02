@@ -23,12 +23,12 @@
 <div class="mx-auto col-md-8 mt-4">
   <h2 class="font-weight-bold mb-3"><i class="fas fa-edit"></i></i>新着の投稿</h2>
   <%= render 'homes/top', post_images: @posts.last(4) %>
-    <div class="all_post_images">
-      <%= link_to "全ての投稿を見る >", post_images_path, class: "link no-underline" %>
-    </div>
+  <div class="all_post_images">
+    <%= link_to "全ての投稿を見る >", post_images_path, class: "link no-underline" %>
   </div>
 </div>
 <% else %>
 <div>
-  <h2 class="font-weight-bold text-center mt-3">投稿がありません。</div>
+  <h2 class="font-weight-bold text-center mt-3">投稿がありません。</h2>
+</div>
 <% end %>
