@@ -11,7 +11,6 @@
               <%= attachment_image_tag @post_image.user, :profile_image, :fill, 400, 400, fallback: "no_image.jpg", size:'50x50', class: 'rounded-circle' %>
               <%= @post_image.user.name %>
             </h5>
-
             <table class="table table-bordered">
               <tbody>
                 <tr>
@@ -46,7 +45,6 @@
                 </tr>
               </tbody>
             </table>
-
             <div class="">
               <% if @post_image.user == current_user %>
                 <%= link_to "削除", post_image_path(@post_image), method: :delete, class: 'btn btn-danger m-3'%>
@@ -59,7 +57,6 @@
                 <%= render 'bookmarks/bookmark', post_image: @post_image %>
               </div>
             </div>
-
           </div>
         </div>
       </div>
