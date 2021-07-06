@@ -425,6 +425,7 @@ DEPENDENCIES
   rspec-rails (~> 3.6.0)
   rubocop-airbnb
   sass-rails (~> 5.0)
+  sassc
   simple_calendar (~> 2.0)
   spring
   spring-commands-rspec
