@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   # 退会処理
   def withdraw
-    if current_user.email == 'guest@example.com'
+    if current_user.email == 'guest@example.com' #ゲストユーザーのメールアドレスなら退会できない
       redirect_to request.referer
       flash[:danger] = 'テストユーザーは退会できません'
     else
