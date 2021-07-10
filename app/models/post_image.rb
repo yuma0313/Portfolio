@@ -12,7 +12,8 @@ class PostImage < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
-
+ 
+  #バリデーション 
   validates :name, presence: true
   validates :caption, presence: true, length: { maximum: 200 }
   validates :address, presence: true
