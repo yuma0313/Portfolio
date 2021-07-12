@@ -8,7 +8,7 @@
         <div class="col-md-6">
           <div class="card-body">
             <h5 class="card-text font-weight-bold">
-              <%= attachment_image_tag @post_image.user, :profile_image, :fill, 400, 400, fallback: "no_image.jpg", size:'50x50', class: 'rounded-circle' %>
+              <%= attachment_image_tag @post_image.user, :profile_image, :fill, 400, 400, fallback: "no_image.jpg", size: '50x50', class: 'rounded-circle' %>
               <%= @post_image.user.name %>
             </h5>
             <table class="table table-bordered">
