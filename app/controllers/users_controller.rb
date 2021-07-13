@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # 退会処理
+  # 退会処理(論理削除)
   def withdraw
     if current_user.email == 'guest@example.com' #ゲストユーザーのメールアドレスなら退会できない
       redirect_to request.referer
