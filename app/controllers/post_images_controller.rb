@@ -5,19 +5,20 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.new(f_params)
     @post_image.user_id = current_user.id
     is_prefecture_valid = PostImage.prefectures.keys.include?(f_params[:prefecture])
-    if f_params[:prefecture] == '都道府県を選択' # '都道府県を選択'のまま投稿できない
-      flash[:danger] = '都道府県を選択してください'
-      redirect_to post_images_path
-    elsif !is_prefecture_valid # falseの場合
-      flash[:notice] = '不正な操作です'
-      redirect_to root_path
-    elsif @post_image.save
-      flash[:success] = "投稿しました"
-      redirect_to post_images_path
-    else
-      @post_images = PostImage.all.page(params[:page]).per(4)
-      render'index'
-    end
+    @post_image.enum_validation(params[:prefecture])
+    # if f_params[:prefecture] == '都道府県を選択' # '都道府県を選択'のまま投稿できない
+    #   flash[:danger] = '都道府県を選択してください'
+    #   redirect_to post_images_path
+    # elsif !is_prefecture_valid # falseの場合
+    #   flash[:notice] = '不正な操作です'
+    #   redirect_to root_path
+    # elsif @post_image.save
+    #   flash[:success] = "投稿しました"
+    #   redirect_to post_images_path
+    # else
+    #   @post_images = PostImage.all.page(params[:page]).per(4)
+    #   render'index'
+    # end
   end
 
   def index

@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @user.post_images.delete_all
         @user.favorites.delete_all
-        @user.update(is_valid: false)
+        @user.update(is_valid: false) #falseになる
         reset_session
       end
       redirect_to root_path, notice: 'またのご利用をお待ちしております'

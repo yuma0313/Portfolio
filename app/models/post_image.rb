@@ -5,16 +5,16 @@ class PostImage < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user # いいねランキング
   has_many :bookmarks, dependent: :destroy
-  
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
- 
-  #バリデーション 
+
+  #バリデーション
   validates :name, presence: true
   validates :caption, presence: true, length: { maximum: 200 }
   validates :address, presence: true
@@ -33,6 +33,23 @@ class PostImage < ApplicationRecord
     福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46,
     沖縄県: 47,
   }
+
+  def enum_validation
+    if f_params[:prefecture] == '都道府県を選択' # '都道府県を選択'のまま投稿できない
+      flash[:danger] = '都道府県を選択してください'
+      redirect_to post_images_path
+    elsif !is_prefecture_valid # falseの場合
+      flash[:notice] = '不正な操作です'
+      redirect_to root_path
+    elsif self.save
+      flash[:success] = "投稿しました"
+      redirect_to post_images_path
+    else
+      post_images = PostImage.all.page(params[:page]).per(4)
+      render'index'
+    end
+    post_images
+  end
 
   def self.search(params)
     post_images = PostImage.all
