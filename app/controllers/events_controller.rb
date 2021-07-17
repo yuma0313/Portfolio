@@ -31,6 +31,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
+      flash[:success] = "スケジュールを変更しました"
       redirect_to events_path
     else
       render 'edit'
