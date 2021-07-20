@@ -6,5 +6,6 @@ class HomesController < ApplicationController
     @posts = PostImage.all
   end
 
-  def about; end
+  def about
+  end
 end
