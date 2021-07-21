@@ -35,6 +35,7 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
+  #論理削除したユーザーの処理
   def reject_user
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
