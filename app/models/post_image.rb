@@ -39,7 +39,7 @@ class PostImage < ApplicationRecord
       flash[:danger] = '都道府県を選択してください'
       redirect_to post_images_path
     elsif !is_prefecture_valid # falseの場合
-      flash[:notice] = '不正な操作です'
+      flash[:danger] = '不正な操作です'
       redirect_to root_path
     elsif self.save
       flash[:success] = "投稿しました"
