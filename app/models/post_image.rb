@@ -34,22 +34,22 @@ class PostImage < ApplicationRecord
     沖縄県: 47,
   }
 
-  def enum_validation
-    if f_params[:prefecture] == '都道府県を選択' # '都道府県を選択'のまま投稿できない
-      flash[:danger] = '都道府県を選択してください'
-      redirect_to post_images_path
-    elsif !is_prefecture_valid # falseの場合
-      flash[:danger] = '不正な操作です'
-      redirect_to root_path
-    elsif self.save
-      flash[:success] = "投稿しました"
-      redirect_to post_images_path
-    else
-      post_images = PostImage.all.page(params[:page]).per(4)
-      render'index'
-    end
-    post_images
-  end
+  # def enum_validation
+  #   if f_params[:prefecture] == '都道府県を選択' # '都道府県を選択'のまま投稿できない
+  #     flash[:danger] = '都道府県を選択してください'
+  #     redirect_to post_images_path
+  #   elsif !is_prefecture_valid # falseの場合
+  #     flash[:danger] = '不正な操作です'
+  #     redirect_to root_path
+  #   elsif self.save
+  #     flash[:success] = "投稿しました"
+  #     redirect_to post_images_path
+  #   else
+  #     post_images = PostImage.all.page(params[:page]).per(4)
+  #     render'index'
+  #   end
+  #   post_images
+  # end
 
   def self.search(params)
     post_images = PostImage.all
