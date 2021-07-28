@@ -43,7 +43,8 @@ class UsersController < ApplicationController
         @user.update(is_valid: false) #falseになる
         reset_session
       end
-      redirect_to root_path, notice: 'またのご利用をお待ちしております'
+      redirect_to root_path
+      flash[:notice] = 'またのご利用をお待ちしております'
     end
   end
 
