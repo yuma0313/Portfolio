@@ -33,7 +33,7 @@ class PostImagesController < ApplicationController
 
   def edit
     @post_image = PostImage.find(params[:id])
-    if @post_image.user.id == current_user.id
+    if @post_image.user.id == current_user.id #ログイン中のユーザーのみ編集
       render'edit'
     else
       redirect_to post_images_path
