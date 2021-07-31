@@ -16,7 +16,7 @@ class PostImagesController < ApplicationController
       flash[:success] = "投稿しました"
       redirect_to post_images_path
     else
-      @post_images = PostImage.all.page(params[:page]).per(4)
+      @post_images = PostImage.all.page(params[:page]).per(4) #paginationの記述
       render'index'
     end
   end
