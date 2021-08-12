@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         @user.post_images.delete_all #投稿データの削除
         @user.favorites.delete_all #いいねデータの削除
         @user.update(is_valid: false) #falseになる
-        reset_session
+        reset_session #セッション内のデータを全て削除する
       end
       redirect_to root_path
       flash[:notice] = 'またのご利用をお待ちしております'
